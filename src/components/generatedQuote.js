@@ -1,11 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getQuote } from "../actions/actions";
 import quoteIcon from "../images/quotation.svg";
-import { isPropertyAssignment } from "typescript";
 
 const GeneratedQuote = props => {
-  console.log("Props", props.quote);
-  return (
+  if (props.quote.content.length > 270) {
+    props.getQuote();
+  }
+  return props.error.length > 0 ? (
+    <div className="top">
+      <h2>Error Occurred! Text: {props.error}</h2>
+    </div>
+  ) : (
     <div className="top">
       <div className="top-container">
         <img src={quoteIcon} alt="A quote icon" />
@@ -25,5 +31,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { getQuote }
 )(GeneratedQuote);
