@@ -4,7 +4,7 @@ import { getQuote } from "../actions/actions";
 import quoteIcon from "../images/quotation.svg";
 
 const GeneratedQuote = props => {
-  if (props.quote.content.length > 270) {
+  if (props.quote.content.length > 140) {
     props.getQuote();
   }
   return props.error.length > 0 ? (
